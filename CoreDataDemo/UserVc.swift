@@ -10,21 +10,19 @@ import UIKit
 import  CoreData
 
 class UserVc: UIViewController {
+    //--------------Variable Declaration---------//
     var userArray: [Users] = []
-    
+    //--------------Outlet-----------------//
     @IBOutlet weak var userTableview: UITableView!
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.userTableview.delegate = self
         self.userTableview.dataSource = self
         self.fetchData()
         self.userTableview.reloadData()
     }
 }
+//----------------TableView Datasource And Delegates------------------//
 extension UserVc: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -39,6 +37,7 @@ extension UserVc: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = name.firstname! + "" + name.secondname! + ""
         return cell
     }
+    //-------------------To Fetch Data--------------//
     func fetchData() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do{
@@ -53,6 +52,4 @@ extension UserVc: UITableViewDelegate, UITableViewDataSource {
     
 }
 class  CustomCell: UITableViewCell {
-    
-   
 }

@@ -18,7 +18,8 @@ class Coredata: UIViewController {
     @IBOutlet weak var searchbynameLabel: UITextField!
     @IBOutlet weak var resultsLabel: UILabel!
     //-----------Button Actions--------//
-    @IBAction func saveBtn(_ sender: UIButton) {
+    @IBAction func saveBtn(_ sender: UIButton){
+        //----------To Save Data---------//
         if firstnameTextfield?.text != "" && secondnameTextfield?.text != ""{
             let newUser = NSEntityDescription.insertNewObject(forEntityName: "Users", into: context)
             newUser.setValue(self.firstnameTextfield!.text, forKey: "firstname")
@@ -34,7 +35,27 @@ class Coredata: UIViewController {
             print("please fill the first name and second name")
         }
     }
+    //------------ Search The users-------------//
     @IBAction func searchBtn(_ sender: UIButton) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Users")
+        let searchString = self.searchbynameLabel?.text
+        request.predicate = NSPredicate(format: "firstname == %@" ,searchString!)
+        
+        do{
+            let result = try context.fetch(request)
+            if result.count > 0 {
+                let firstname = (result[0] as AnyObject).value(forKey: "firstname") as! String
+                let secondname = (result[0] as AnyObject).value(forKey: "secondname") as! String
+                self.resultsLabel?.text = firstname + " " + secondname
+                }
+            else{
+                self.resultsLabel?.text = "no user"
+            }
+            
+        }
+        catch {
+            print(error)
+        }
         
         
     }
@@ -45,7 +66,7 @@ class Coredata: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        
+        
     }
 }
