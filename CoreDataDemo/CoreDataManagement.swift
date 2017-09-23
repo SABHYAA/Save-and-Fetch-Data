@@ -15,8 +15,6 @@ class  CoreDataManagement {
     
     
     func save(UserData:[String:String]){
-        
-//        if firstnameTextfield?.text != "" && secondnameTextfield?.text != ""{
             let newUser = NSEntityDescription.insertNewObject(forEntityName: "Users", into: context)
             newUser.setValue(UserData["firstname"], forKey: "firstname")
             newUser.setValue(UserData["secondname"], forKey: "secondname")
@@ -26,10 +24,6 @@ class  CoreDataManagement {
             catch{
                 print(error)
             }
-        
-//        else {
-//            print("please fill the first name and second name")
-//        }
     }
         
     
