@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Coredata-->
+        <!--Coredata Vc-->
         <scene sceneID="rP4-jE-Ruq">
             <objects>
-                <viewController storyboardIdentifier="CoredataId" id="qE5-hF-obs" customClass="Coredata" customModule="CoreDataDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CoredataId" id="qE5-hF-obs" customClass="CoredataVc" customModule="CoreDataDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OBT-Za-rLM"/>
                         <viewControllerLayoutGuide type="bottom" id="I9R-sv-ETi"/>
@@ -121,7 +121,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CustomCellId" id="Avu-U1-fwB" customClass="CustomCell" customModule="CoreDataDemo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Custom" id="Avu-U1-fwB" customClass="Custom" customModule="CoreDataDemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Avu-U1-fwB" id="WIl-WP-tKN">

@@ -9,7 +9,7 @@
 import UIKit
 import  CoreData
 
-class Coredata: UIViewController {
+class CoredataVc: UIViewController {
     var textFieldData = [String:String]()
     //-----------variable declaration-----//
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -19,7 +19,13 @@ class Coredata: UIViewController {
     @IBOutlet weak var secondnameTextfield: UITextField!
     @IBOutlet weak var searchbynameLabel: UITextField!
     @IBOutlet weak var resultsLabel: UILabel!
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.view.endEditing(true)
+    }
     //-----------Button Actions--------//
     @IBAction func saveBtn(_ sender: UIButton){
         //----------To Save Data---------//
@@ -56,12 +62,5 @@ class Coredata: UIViewController {
         let obj = self.storyboard?.instantiateViewController(withIdentifier: "UserId") as? UserVc
         self.navigationController?.pushViewController(obj!, animated: true)
         
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        self.view.endEditing(true)
     }
 }

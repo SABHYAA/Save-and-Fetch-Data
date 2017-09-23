@@ -7,17 +7,19 @@
 //
 
 import UIKit
-import  CoreData
+import CoreData
 
 class UserVc: UIViewController {
     //--------------Variable Declaration---------//
     var userArray: [Users] = []
     //--------------Outlet-----------------//
     @IBOutlet weak var userTableview: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.userTableview.delegate = self
         self.userTableview.dataSource = self
+        
         userArray = CoreDataManagement().fetch()
         self.userTableview.reloadData()
     }
@@ -32,11 +34,16 @@ extension UserVc: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = userTableview.dequeueReusableCell(withIdentifier: "CustomCellId", for: indexPath) as! CustomCell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Custom", for: indexPath) as! Custom
+        
         let name = userArray[indexPath.row]
+        
         cell.textLabel?.text = name.firstname! + "" + name.secondname! + ""
+        
         return cell
     }
 }
-class  CustomCell: UITableViewCell {
+class  Custom: UITableViewCell {
+    
 }
