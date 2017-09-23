@@ -10,30 +10,23 @@ import UIKit
 import  CoreData
 
 class Coredata: UIViewController {
+    var textFieldData = [String:String]()
     //-----------variable declaration-----//
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     //-----------Outlets-------//
     @IBOutlet weak var firstnameTextfield: UITextField!
     @IBOutlet weak var secondnameTextfield: UITextField!
     @IBOutlet weak var searchbynameLabel: UITextField!
     @IBOutlet weak var resultsLabel: UILabel!
+    
     //-----------Button Actions--------//
     @IBAction func saveBtn(_ sender: UIButton){
         //----------To Save Data---------//
-        if firstnameTextfield?.text != "" && secondnameTextfield?.text != ""{
-            let newUser = NSEntityDescription.insertNewObject(forEntityName: "Users", into: context)
-            newUser.setValue(self.firstnameTextfield!.text, forKey: "firstname")
-            newUser.setValue(self.secondnameTextfield!.text, forKey: "secondname")
-            do{
-                try context.save()
-            }
-            catch{
-                print(error)
-            }
-        }
-        else {
-            print("please fill the first name and second name")
-        }
+        textFieldData["firstname"] = self.firstnameTextfield!.text
+        textFieldData["secondname"] = self.secondnameTextfield!.text
+        CoreDataManagement().save(UserData: textFieldData)
+        
     }
     //------------ Search The users-------------//
     @IBAction func searchBtn(_ sender: UIButton) {
@@ -47,7 +40,7 @@ class Coredata: UIViewController {
                 let firstname = (result[0] as AnyObject).value(forKey: "firstname") as! String
                 let secondname = (result[0] as AnyObject).value(forKey: "secondname") as! String
                 self.resultsLabel?.text = firstname + " " + secondname
-                }
+            }
             else{
                 self.resultsLabel?.text = "no user"
             }

@@ -18,7 +18,7 @@ class UserVc: UIViewController {
         super.viewDidLoad()
         self.userTableview.delegate = self
         self.userTableview.dataSource = self
-        self.fetchData()
+        userArray = CoreDataManagement().fetch()
         self.userTableview.reloadData()
     }
 }
@@ -37,19 +37,6 @@ extension UserVc: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = name.firstname! + "" + name.secondname! + ""
         return cell
     }
-    //-------------------To Fetch Data--------------//
-    func fetchData() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        do{
-          userArray = try context.fetch(Users.fetchRequest())
-        }
-        catch{
-            print(error)
-        }
-        
-        
-    }
-    
 }
 class  CustomCell: UITableViewCell {
 }
